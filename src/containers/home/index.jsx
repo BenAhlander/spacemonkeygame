@@ -4,9 +4,9 @@ import listCards from "../../assets/demoData/listCards.json";
 import Grid from "@material-ui/core/Grid";
 
 function Home() {
-  const renderCard = (objProps) => {
+  const renderCard = (objProps, i) => {
     return (
-      <Grid item xs={12} sm={6} md={4} lg={3}>
+      <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
         <Card {...objProps} />
       </Grid>
     );
