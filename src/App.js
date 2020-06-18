@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import blueGrey from "@material-ui/core/colors/blueGrey";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import {
+  createMuiTheme,
+  ThemeProvider,
+  responsiveFontSizes,
+} from "@material-ui/core/styles";
+import Router from "./Router";
+import Nav from "./components/Nav";
 
 function App() {
+  let theme = createMuiTheme({
+    palette: {
+      type: "light",
+      primary: blueGrey,
+    },
+  });
+  theme = responsiveFontSizes(theme);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Nav />
+      {Router}
+    </ThemeProvider>
   );
 }
 
