@@ -41,7 +41,7 @@ export default function ButtonAppBar() {
             alt="Space Monkey Icon"
           />
           <Typography variant="h6" className={classes.title}>
-            Space Monkey
+            Ninja Space Monkey
           </Typography>
           <Button color="inherit" href="/login">
             Login
