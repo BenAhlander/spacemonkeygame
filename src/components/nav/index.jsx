@@ -8,9 +8,9 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import SpaceMonkeyIcon from "../../assets/icons/spaceMonkeyLogoWhite.svg";
 import AppContext from "../../AppContext";
-import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
+import Hidden from "@material-ui/core/Hidden";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,20 +57,22 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Ninja Space Monkey
           </Typography>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={state.theme === "dark"}
-                onChange={handleChangeTheme}
-                name="theme"
-                color="secondary"
-              />
-            }
-            label="Dark Theme"
-          />
-          <Button color="inherit" href="/login">
-            Login
-          </Button>
+          <Hidden mdDown>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={state.theme === "dark"}
+                  onChange={handleChangeTheme}
+                  name="theme"
+                  color="secondary"
+                />
+              }
+              label="Dark Theme"
+            />
+            <Button color="inherit" href="/login">
+              Login
+            </Button>
+          </Hidden>
         </Toolbar>
       </AppBar>
     </div>
