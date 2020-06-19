@@ -57,7 +57,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Ninja Space Monkey
           </Typography>
-          <Hidden mdDown>
+          <Hidden xsDown>
             <FormControlLabel
               control={
                 <Switch
