@@ -38,6 +38,7 @@ export default function ButtonAppBar() {
           <img
             src={SpaceMonkeyIcon}
             style={{ width: "45px", marginRight: "16px" }}
+            alt="Space Monkey Icon"
           />
           <Typography variant="h6" className={classes.title}>
             Space Monkey
