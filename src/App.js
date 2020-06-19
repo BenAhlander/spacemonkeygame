@@ -12,8 +12,10 @@ import Nav from "./components/nav";
 import AppContext from "./AppContext";
 import AppReducer from "./reducer";
 import init from "./init";
+import { BrowserRouter } from "react-router-dom";
+import History from "./history";
 
-function App() {
+function App(props) {
   const [state, dispatch] = useReducer(AppReducer, { theme: "light" }, init);
 
   let theme = createMuiTheme({
@@ -25,13 +27,15 @@ function App() {
   });
   theme = responsiveFontSizes(theme);
   return (
-    <AppContext.Provider value={[state, dispatch]}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Nav />
-        {Router}
-      </ThemeProvider>
-    </AppContext.Provider>
+    <BrowserRouter history={History}>
+      <AppContext.Provider value={[state, dispatch]}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Nav />
+          {Router}
+        </ThemeProvider>
+      </AppContext.Provider>
+    </BrowserRouter>
   );
 }
 

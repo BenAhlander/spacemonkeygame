@@ -11,6 +11,7 @@ import AppContext from "../../AppContext";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import Hidden from "@material-ui/core/Hidden";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,11 +25,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
-
-  console.log({ state });
+  let history = useHistory();
 
   const handleChangeTheme = () => {
     dispatch({
@@ -69,7 +69,7 @@ export default function ButtonAppBar() {
               }
               label="Dark Theme"
             />
-            <Button color="inherit" href="/login">
+            <Button color="inherit" onClick={() => history.push("/login")}>
               Login
             </Button>
           </Hidden>
