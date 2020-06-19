@@ -12,6 +12,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import Hidden from "@material-ui/core/Hidden";
 import { useHistory } from "react-router-dom";
+import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,9 +70,7 @@ export default function ButtonAppBar(props) {
               }
               label="Dark Theme"
             />
-            <Button color="inherit" onClick={() => history.push("/login")}>
-              Login
-            </Button>
+            <AmplifySignOut />
           </Hidden>
         </Toolbar>
       </AppBar>

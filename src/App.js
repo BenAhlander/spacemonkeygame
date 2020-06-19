@@ -14,6 +14,11 @@ import AppReducer from "./reducer";
 import init from "./init";
 import { BrowserRouter } from "react-router-dom";
 import History from "./history";
+import Amplify, { Auth } from "aws-amplify";
+import awsconfig from "./aws-exports";
+import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
+
+Amplify.configure(awsconfig);
 
 function App(props) {
   const [state, dispatch] = useReducer(AppReducer, { theme: "light" }, init);
@@ -39,4 +44,4 @@ function App(props) {
   );
 }
 
-export default App;
+export default withAuthenticator(App);

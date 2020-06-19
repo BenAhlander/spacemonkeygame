@@ -1,0 +1,10 @@
+{
+	"auth": {
+		"questionapp62c7565f": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}

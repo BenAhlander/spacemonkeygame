@@ -1,0 +1,20 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-questionapp-prod-160314-authRole",
+            "UnauthRoleArn": "arn:aws:iam::343025871293:role/amplify-questionapp-prod-160314-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::343025871293:role/amplify-questionapp-prod-160314-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-questionapp-prod-160314-deployment",
+            "UnauthRoleName": "amplify-questionapp-prod-160314-unauthRole",
+            "StackName": "amplify-questionapp-prod-160314",
+            "StackId": "arn:aws:cloudformation:us-west-2:343025871293:stack/amplify-questionapp-prod-160314/addef070-b278-11ea-8081-06d54ad4c402",
+            "AmplifyAppId": "d1zqauh8oqwoxk"
+        },
+        "categories": {
+            "auth": {
+                "questionapp62c7565f": {}
+            }
+        }
+    }
+}
