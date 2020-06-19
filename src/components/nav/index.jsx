@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -7,6 +7,10 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import SpaceMonkeyIcon from "../../assets/icons/spaceMonkeyLogoWhite.svg";
+import AppContext from "../../AppContext";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,6 +26,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar() {
   const classes = useStyles();
+  const [state, dispatch] = useContext(AppContext);
+
+  console.log({ state });
+
+  const handleChangeTheme = () => {
+    dispatch({
+      type: "setTheme",
+      value: state.theme === "light" ? "dark" : "light",
+    });
+  };
 
   return (
     <div className={classes.root}>
@@ -43,6 +57,17 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Ninja Space Monkey
           </Typography>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={state.theme === "dark"}
+                onChange={handleChangeTheme}
+                name="theme"
+                color="secondary"
+              />
+            }
+            label="Dark Theme"
+          />
           <Button color="inherit" href="/login">
             Login
           </Button>

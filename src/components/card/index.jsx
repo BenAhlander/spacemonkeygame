@@ -17,6 +17,21 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SpaceMonkeyIcon from "../../assets/icons/spaceMonkeyLogoWhite.svg";
 
+const keywords = [
+  "monkey",
+  "astronaut",
+  "space",
+  "baby monkey",
+  "chimp",
+  "stars",
+  "sunset",
+  "space ship",
+  "milky way",
+  "nature",
+  "chimp",
+  "cute monkey",
+];
+
 const useStyles = makeStyles((theme) => ({
   root: {
     // maxWidth: 345,
@@ -41,13 +56,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard(props) {
+export default function RecipeReviewCard({ keyword, ...props }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [randomWord, setRandomWord] = React.useState("");
+
+  const getWord = () => {
+    const randomIndex = Math.floor(Math.random() * keywords.length);
+    return keywords[randomIndex];
+  };
+
+  React.useEffect(() => {
+    const word = getWord();
+    setRandomWord(word);
+  }, []);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const RandomImage = React.memo((props) => {
+    return (
+      <CardMedia
+        className={classes.media}
+        image={`https://source.unsplash.com/random?${randomWord}`}
+        title={`Unsplash Image of ${randomWord}`}
+      />
+    );
+  });
 
   return (
     <Card className={classes.root}>
@@ -67,13 +103,9 @@ export default function RecipeReviewCard(props) {
         title={props.user}
         subheader={props.date}
       />
-      <CardMedia
-        className={classes.media}
-        image="https://source.unsplash.com/random"
-        title="Unsplash Image"
-      />
+      <RandomImage />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography variant="h5" color="textSecondary">
           {props.question}
         </Typography>
       </CardContent>
@@ -97,7 +129,7 @@ export default function RecipeReviewCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Users Answers</Typography>
+          <Typography paragraph>Users Answers Coming Soon...</Typography>
         </CardContent>
       </Collapse>
     </Card>
