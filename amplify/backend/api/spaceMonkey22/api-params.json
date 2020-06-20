@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/card",
+            "lambdaFunction": "spaceMonkeyCategory",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "spaceMonkey22",
+    "apiName": "spaceMonkey22",
+    "functionArns": [
+        {
+            "lambdaFunction": "spaceMonkeyCategory"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-questionapp-prod-160314-authRole",
+        "unAuthRoleName": "amplify-questionapp-prod-160314-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "spaceMonkeyCategory",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
