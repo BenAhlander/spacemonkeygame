@@ -81,7 +81,10 @@ export default function SignInSide() {
     };
     console.log(payload);
     Auth.signUp(payload)
-      .then((user) => console.log({ user }))
+      .then((user) => {
+        console.log({ user });
+        history.push("/verify");
+      })
       .catch((error) => console.log({ error }));
   };
 
