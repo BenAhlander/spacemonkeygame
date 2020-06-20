@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -63,8 +63,37 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [useSignup, setUseSignup] = useState(true);
 
   let history = useHistory();
+
+  const signUp = () => {
+    const payload = {
+      username: email,
+      password,
+      attributes: {
+        email, // optional
+        // phone_number, // optional - E.164 number convention
+        // other custom attributes
+      },
+    };
+    console.log(payload);
+    Auth.signUp(payload)
+      .then((user) => console.log({ user }))
+      .catch((error) => console.log({ error }));
+  };
+
+  async function SignIn() {
+    try {
+      const user = await Auth.signIn(email, password);
+      console.log({ user });
+      history.push("/home");
+    } catch (error) {
+      console.log("error signing in", error);
+    }
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -76,7 +105,7 @@ export default function SignInSide() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            {useSignup ? "Sign Up" : "Log in"}
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -85,10 +114,11 @@ export default function SignInSide() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Email"
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -100,31 +130,37 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={() => history.push("/home")}
+              onClick={useSignup ? signUp : SignIn}
             >
-              Sign In
+              {useSignup ? "Sign Up" : "Log In"}
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Button size="small" color="inherit">
                   Forgot password?
-                </Link>
+                </Button>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+                <Button
+                  size="small"
+                  color="inherit"
+                  onClick={() => setUseSignup(!useSignup)}
+                >
+                  {useSignup
+                    ? "Already have an account? Log In"
+                    : "Don't have an account? Sign Up"}
+                </Button>
               </Grid>
             </Grid>
             <Box mt={5}>

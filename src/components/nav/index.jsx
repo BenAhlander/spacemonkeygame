@@ -13,6 +13,8 @@ import Switch from "@material-ui/core/Switch";
 import Hidden from "@material-ui/core/Hidden";
 import { useHistory } from "react-router-dom";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
+import { Auth } from "aws-amplify";
+import { isUserSignedIn } from "../../utils/auth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +38,20 @@ export default function ButtonAppBar(props) {
       type: "setTheme",
       value: state.theme === "light" ? "dark" : "light",
     });
+  };
+
+  const signOut = () => {
+    Auth.signOut()
+      .then((res) => {
+        history.push("/");
+      })
+      .catch((error) => {
+        console.log({ error });
+      });
+  };
+
+  const signIn = () => {
+    return history.push("/");
   };
 
   return (
@@ -70,7 +86,12 @@ export default function ButtonAppBar(props) {
               }
               label="Dark Theme"
             />
-            <AmplifySignOut />
+            <Button
+              color="inherit"
+              onClick={isUserSignedIn() ? signOut : signIn}
+            >
+              {isUserSignedIn() ? "Sign Out" : "Log In"}
+            </Button>
           </Hidden>
         </Toolbar>
       </AppBar>

@@ -16,7 +16,7 @@ import { BrowserRouter } from "react-router-dom";
 import History from "./history";
 import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "./aws-exports";
-import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
+// import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 
 Amplify.configure(awsconfig);
 
@@ -44,4 +44,4 @@ function App(props) {
   );
 }
 
-export default withAuthenticator(App);
+export default App;
