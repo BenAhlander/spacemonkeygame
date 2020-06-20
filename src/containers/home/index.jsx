@@ -37,6 +37,7 @@ function SwipeableTextMobileStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = listCards.length;
 
+  //DO LATER
   const createNewCard = () => {
     Auth.currentSession().then((res) => {
       let accessToken = res.getAccessToken();
@@ -98,7 +99,6 @@ function SwipeableTextMobileStepper() {
         alignItems="center"
         style={{ height: "85vh" }}
       >
-        <button onClick={createNewCard}>DO A THING</button>
         <Grid item xs={12} sm={8} md={6} lg={6}>
           <div className={classes.carasoul}>
             <SwipeableViews
